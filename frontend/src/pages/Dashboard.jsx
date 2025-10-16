@@ -241,7 +241,7 @@ export default function Dashboard(){
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     localStorage.removeItem('display_name');
-    window.location.replace('/login');
+    window.location.href = window.location.origin + '/login';
   }
 
   // Filtrado combinado: texto + estado + rango de fechas
