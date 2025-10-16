@@ -238,10 +238,10 @@ export default function Dashboard(){
   }
 
   function logout(){
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
-    localStorage.removeItem('display_name');
-    window.location.href = window.location.origin + '/login';
+    localStorage.clear(); // Limpia todo el localStorage
+    sessionStorage.clear(); // Limpia todo el sessionStorage
+    document.cookie = ''; // Limpia las cookies
+    window.location.replace('/'); // Redirige a la raíz que será redirigida al login por el router
   }
 
   // Filtrado combinado: texto + estado + rango de fechas
