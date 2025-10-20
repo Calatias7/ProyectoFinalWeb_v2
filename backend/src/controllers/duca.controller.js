@@ -7,7 +7,7 @@ export async function recepcion(req,res){
   if(error){
     await query(
       'INSERT INTO bitacora_registro(usuario, ip_origen, operacion, resultado, numero_declaracion) VALUES ($1,$2,$3,$4,$5)',
-      [req.user?.email||'anon', ip, 'Recepción DUCA', 'Fallo', req.body?.duca?.numeroDocumento||null]
+      [req.user?.email||'anon', ip, 'Recepción DUCA', 'Fallo', (req.body?.duca?.numeroDocumento||'').slice(0,20)]
     );
     return res.status(400).json({error:'Validación fallida', detalles:error.details.map(d=>d.message)});
   }
@@ -24,7 +24,7 @@ export async function recepcion(req,res){
     if(!trow.rowCount){
       await query(
         'INSERT INTO bitacora_registro(usuario, ip_origen, operacion, resultado, numero_declaracion) VALUES ($1,$2,$3,$4,$5)',
-        [req.user?.email||'externo', ip, 'Recepción DUCA', 'Transportista no existe', d.numeroDocumento]
+        [req.user?.email||'externo', ip, 'Recepción DUCA', 'Transp. inexistente', d.numeroDocumento.slice(0,20)]
       );
       return res.status(409).json({error:'Transportista no existe o inactivo'});
     }
@@ -64,7 +64,7 @@ export async function recepcion(req,res){
 
     await query(
       'INSERT INTO bitacora_registro(usuario, ip_origen, operacion, resultado, numero_declaracion) VALUES ($1,$2,$3,$4,$5)',
-      [trow.rows[0].email, ip, 'Registro declaración', 'Éxito', d.numeroDocumento]
+      [trow.rows[0].email, ip, 'Registro declaración', 'Éxito', d.numeroDocumento.slice(0,20)]
     );
 
     res.status(201).json({message:'Declaración registrada correctamente', numero: d.numeroDocumento});
@@ -72,7 +72,7 @@ export async function recepcion(req,res){
     console.error(e);
     await query(
       'INSERT INTO bitacora_registro(usuario, ip_origen, operacion, resultado, numero_declaracion) VALUES ($1,$2,$3,$4,$5)',
-      [req.user?.email||'externo', ip, 'Registro declaración', 'Fallo', req.body?.duca?.numeroDocumento||null]
+      [req.user?.email||'externo', ip, 'Registro declaración', 'Fallo', (req.body?.duca?.numeroDocumento||'').slice(0,20)]
     );
     res.status(500).json({error:'Error de servidor'});
   }

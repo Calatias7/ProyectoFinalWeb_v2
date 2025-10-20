@@ -17,7 +17,7 @@ async function run(){
   await upsert('admin@siglad.test','Admin123*','ADMIN','Administrador');
   await upsert('agente@siglad.test','Agente123*','AGENTE','Agente Aduanero');
   await upsert('juan.perez@siglad.test','Transportista123*','TRANSPORTISTA','Juan Pérez');
-  await upsert('auditor@siglad.test','Auditor123*','AUDITOR','Auditoría');
+  await upsert('importador@siglad.test','Importador123*','IMPORTADOR','Importador S.A.');
 
   console.log('Seed listo');
   process.exit(0);

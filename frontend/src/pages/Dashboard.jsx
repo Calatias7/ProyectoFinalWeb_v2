@@ -409,7 +409,7 @@ function AdminUsers({ onChange }) {
                 <option>TRANSPORTISTA</option>
                 <option>AGENTE</option>
                 <option>ADMIN</option>
-                <option>AUDITOR</option>
+                <option>IMPORTADOR</option>
               </select>
             </div>
             <div className="col-6 d-flex align-items-center">
@@ -442,7 +442,7 @@ function AdminUsers({ onChange }) {
               <option value="TRANSPORTISTA">TRANSPORTISTA</option>
               <option value="AGENTE">AGENTE</option>
               <option value="ADMIN">ADMIN</option>
-              <option value="AUDITOR">AUDITOR</option>
+              <option value="IMPORTADOR">IMPORTADOR</option>
             </select>
           </div>
           <div className="col-2">
@@ -505,7 +505,7 @@ function AdminUsers({ onChange }) {
                     <option>TRANSPORTISTA</option>
                     <option>AGENTE</option>
                     <option>ADMIN</option>
-                    <option>AUDITOR</option>
+                    <option>IMPORTADOR</option>
                   </select>
                 </div>
                 <div className="form-check">

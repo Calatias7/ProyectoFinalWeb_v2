@@ -22,7 +22,9 @@ export default function Login() {
       localStorage.setItem('token', data.token);
       localStorage.setItem('role', data.role);
       localStorage.setItem('display_name', data.display_name);
-      navigate('/dashboard', { replace: true });
+      // Si es IMPORTADOR, redirigir a la vista Sender DUCA; caso contrario al dashboard
+      const next = (data.role === 'IMPORTADOR') ? '/sender' : '/dashboard';
+      navigate(next, { replace: true });
     } catch (err) {
       setMsg(err.response?.data?.error || 'Error al iniciar sesión');
     }
